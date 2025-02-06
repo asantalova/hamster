@@ -27,6 +27,7 @@ def get_xray_token(client_id, client_secret):
         print("Failed to authenticate with X-Ray: ", response.text)
         exit(1)
 
+
 #Read and Parse test results from JSON
 def load_test_results():
     try:
