@@ -1,6 +1,7 @@
 __pycache__/
 .pytest_cache
-/demo.py
 /*.sh
 /*.json
-/listener.py
+/chrome-win64
+/venv
+/Pipfile
