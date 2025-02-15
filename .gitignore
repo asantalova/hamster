@@ -5,7 +5,7 @@ __pycache__/
 /chrome-win64
 /venv
 /Pipfile
-/robot_overview.md
+robot_overview.md
 /*.html
 /*.pdf
 /*.xml
