@@ -7,13 +7,13 @@ def launch(browser):
     homepage.load()
     return homepage
 
-@pytest.mark.NRT
+@pytest.mark.SANITY
 @pytest.mark.case_tag("SCRUM-3")
 def test_page_title(browser):
     homepage = launch(browser)
     assert(homepage.title()) == 'Luxury Cruises | Explora Journeys'
 
-@pytest.mark.SANITY
+@pytest.mark.NRT
 @pytest.mark.case_tag("SCRUM-5")
 def test_destination_list(browser):
     homepage = launch(browser)
