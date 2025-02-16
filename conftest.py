@@ -11,7 +11,7 @@ def browser():
 #Modify test nodes IDs
 def pytest_collection_modifyitems(items):
     for item in items:
-        case_tag_marker = item.get_closest_marker("case_tag")
+        case_tag_marker = item.get_closest_marker("xray")
         if case_tag_marker:
             tag_name = case_tag_marker.args[0]
             item._nodeid = f"{tag_name}"

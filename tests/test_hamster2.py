@@ -8,13 +8,13 @@ def launch(browser):
     return homepage
 
 @pytest.mark.SANITY
-@pytest.mark.case_tag("SCRUM-3")
+@pytest.mark.xray(test_key = "OPS-11")
 def test_page_title(browser):
     homepage = launch(browser)
     assert(homepage.title()) == 'Luxury Cruises | Explora Journeys'
 
 @pytest.mark.NRT
-@pytest.mark.case_tag("SCRUM-5")
+@pytest.mark.xray(test_key = "OPS-12")
 def test_destination_list(browser):
     homepage = launch(browser)
     homepage.click_on_destination_field()
