@@ -45,10 +45,10 @@ def load_test_results():
 
                 executionResults.append({
                     "testKey": test_key,
-                    "status": status,
+                    "status": status
                 })
 
-                return executionResults
+            return executionResults
     except (FileNotFoundError, json.JSONDecodeError):
             print("Error: Couldn't read or parse 'test_results.json'.")
             exit(1)
@@ -65,7 +65,7 @@ def map_status(pytest_status):
 #Format execution data
 def format_execution_data(executionResults):
     return json.dumps({
-        "testExecutionKey": test_exectution_key, #Jira test execution issue
+        "testExecutionKey": "OPS-10", #Jira test execution issue
         "tests": executionResults
     }, indent = 4)
 
