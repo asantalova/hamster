@@ -3,18 +3,10 @@ from selenium import webdriver
 
 @pytest.fixture()
 def browser():
-    driver = webdriver.Chrome() # to connect to Selenium Grid use driver.remote() and Grid URL
+    driver = webdriver.Chrome()
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
-
-#Modify test nodes IDs
-def pytest_collection_modifyitems(items):
-    for item in items:
-        test_marker = item.get_closest_marker("xray")
-        if test_marker:
-            tag_name = test_marker.args[0]
-            item._nodeid = f"{tag_name}"
 
 #Custom command-line option for pytest
 def pytest_addoption(parser):
@@ -23,7 +15,9 @@ def pytest_addoption(parser):
 #Select tests for execution by xray mark 
 def pytest_collection_modifyitems(config, items):
     test_keys = config.getoption("--xray-keys").split(",")
-
+    if not test_keys or test_keys == [""]:
+        return 
+    
     selected_items = []
     deselected_items = []
 
@@ -31,6 +25,8 @@ def pytest_collection_modifyitems(config, items):
         marker = item.get_closest_marker("xray")
         if marker:
             test_key = marker.kwargs.get("test_key")
+            if test_key:
+                item._nodeid = f"{test_key}"
 
             if test_key in test_keys:
                 selected_items.append(item)

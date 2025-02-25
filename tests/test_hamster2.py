@@ -18,5 +18,5 @@ def test_page_title(browser):
 def test_destination_list(browser):
     homepage = launch(browser)
     homepage.click_on_destination_field()
-    assert(len(homepage.get_destination_list())) == 5
+    assert(len(homepage.get_destination_list())) == 8
     
