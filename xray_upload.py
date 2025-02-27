@@ -4,6 +4,7 @@ import json
 
 test_exectution_key = os.environ.get("TEST_EXECUTION_KEY", "Not found")
 test_keys = os.environ.get("TEST_KEYS", "Not found") 
+print(test_exectution_key)
 
 #XRAY Cloud API Endpoints
 XRAY_AUTH_URL = "https://xray.cloud.getxray.app/api/v2/authenticate"
@@ -65,7 +66,7 @@ def map_status(pytest_status):
 #Format execution data
 def format_execution_data(executionResults):
     return json.dumps({
-        "testExecutionKey": "OPS-10", #Jira test execution issue
+        "testExecutionKey": test_exectution_key, #Jira test execution issue
         "tests": executionResults
     }, indent = 4)
 

@@ -11,7 +11,7 @@ def launch(browser):
 @pytest.mark.xray(test_key="OPS-11")
 def test_page_title(browser):
     homepage = launch(browser)
-    assert(homepage.title()) == 'Luxury Cruises | Explora Journeys'
+    assert(homepage.title()) == 'Luxury Cruises | Explora Journey'
 
 @pytest.mark.NRT
 @pytest.mark.xray(test_key="OPS-12")
