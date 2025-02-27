@@ -41,7 +41,7 @@ def load_test_results():
             print("Test results loaded: ")
             executionResults=[]
             for test in test_data.get("tests", []):
-                test_key = test.get("nodeid","")
+                test_key = test.get("test","")
                 status = map_status(test.get("outcome", "TO DO")) 
 
                 executionResults.append({
@@ -66,7 +66,7 @@ def map_status(pytest_status):
 #Format execution data
 def format_execution_data(executionResults):
     return json.dumps({
-        "testExecutionKey": test_exectution_key, #Jira test execution issue
+        "testExecutionKey": "OPS-10", #Jira test execution issue
         "tests": executionResults
     }, indent = 4)
 
