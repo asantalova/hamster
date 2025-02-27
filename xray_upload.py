@@ -66,7 +66,7 @@ def map_status(pytest_status):
 #Format execution data
 def format_execution_data(executionResults):
     return json.dumps({
-        "testExecutionKey": "OPS-10", #Jira test execution issue
+        "testExecutionKey": test_exectution_key, #Jira test execution issue
         "tests": executionResults
     }, indent = 4)
 
