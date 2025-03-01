@@ -4,6 +4,7 @@ import time
 import re
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 #Store test results globally
 test_results = []
@@ -19,7 +20,7 @@ def browser():
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--no sandbox") # for CI/CD
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(service=Service("/usr/local/bin/chromedriver"),options=chrome_options)
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
