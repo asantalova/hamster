@@ -17,11 +17,12 @@ start_time = None # session start time
 @pytest.fixture()
 def browser():
     chrome_options = Options()
+    chrome_options.binary_location = "/usr/bin/google-chrome"
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--no sandbox") # for CI/CD
     chrome_options.add_argument("disable-dev-shm-usage")
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options, executable_path ='/usr/bin/chromedriver')
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
