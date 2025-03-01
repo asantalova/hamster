@@ -4,7 +4,7 @@
 ```sh
 pytest tests/ --xray-keys="KEY-1","KEY-2"  
 ```
-#### *If no keys are provided, all tests will be selected for execution.
+#### *If no keys are provided, all tests with xray marks will be selected for execution.
 
 
 ------------------------------------------------------------------------

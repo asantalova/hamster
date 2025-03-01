@@ -2,9 +2,9 @@ import os
 import requests
 import json
 
-test_exectution_key = os.environ.get("TEST_EXECUTION_KEY", "Not found")
+test_execution_key = os.environ.get("TEST_EXECUTION_KEY", "Not found")
 test_keys = os.environ.get("TEST_KEYS", "Not found") 
-print(test_exectution_key)
+print(test_execution_key)
 
 #XRAY Cloud API Endpoints
 XRAY_AUTH_URL = "https://xray.cloud.getxray.app/api/v2/authenticate"
@@ -66,7 +66,7 @@ def map_status(pytest_status):
 #Format execution data
 def format_execution_data(executionResults):
     return json.dumps({
-        "testExecutionKey": test_exectution_key, #Jira test execution issue
+        "testExecutionKey": test_execution_key, #Jira test execution issue
         "tests": executionResults
     }, indent = 4)
 
@@ -83,7 +83,7 @@ def upload_results():
 
     payload = format_execution_data(executionResults)
     response = requests.post(XRAY_IMPORT_URL, headers=headers, data=payload)
-
+    print(payload)
     if response.status_code in [200, 201]:
         print("Test execution results uploaded successfully to Test Execution {}".format(test_exectution_key))
     else: 

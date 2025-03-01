@@ -17,7 +17,8 @@ start_time = None # session start time
 def browser():
     chrome_options = Options()
     chrome_options.add_argument("--headless")
-    #chrome_options.add_argument("--no sandbox") # for CI/CD
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--no sandbox") # for CI/CD
     driver = webdriver.Chrome(options=chrome_options)
     driver.implicitly_wait(10)
     yield driver
