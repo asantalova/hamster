@@ -20,7 +20,8 @@ def browser():
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--no sandbox") # for CI/CD
-    driver = webdriver.Chrome(service=Service("/usr/local/bin/chromedriver"),options=chrome_options)
+    chrome_options.add_argument("disable-dev-shm-usage")
+    driver = webdriver.Chrome(options=chrome_options)
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
