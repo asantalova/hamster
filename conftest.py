@@ -24,7 +24,7 @@ def browser():
     chrome_options.add_argument("--disable-gpu") # for CI/CD
     chrome_options.add_argument("--no sandbox") # for CI/CD
     chrome_options.add_argument("disable-dev-shm-usage")
-    chrome_options.binary_location = "/harness"
+    #chrome_options.binary_location = "/harness"
     chrome_options.add_argument("--remote-debugging-port=9222")
     chrome_options.add_argument("--user-data-dir=/tmp/chrome-profile")
     driver_path = ChromeDriverManager().install()
