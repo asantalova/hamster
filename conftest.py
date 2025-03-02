@@ -2,7 +2,6 @@ import json
 import pytest
 import time
 import re
-import logging
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -18,17 +17,12 @@ start_time = None # session start time
 
 @pytest.fixture()
 def browser():
-    logging.basicConfig(filename="selenium_debug.log", level=logging.DEBUG)
     chrome_options = Options()
     #chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-gpu") # for CI/CD
     chrome_options.add_argument("--no sandbox") # for CI/CD
     chrome_options.add_argument("disable-dev-shm-usage")
-    #chrome_options.binary_location = "/harness"
-    chrome_options.add_argument("--remote-debugging-port=9222")
-    chrome_options.add_argument("--user-data-dir=/tmp/chrome-profile")
-    driver_path = ChromeDriverManager().install()
-    service=Service(driver_path, log_output="chromedriver.log")
+    service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.implicitly_wait(10)
     yield driver
