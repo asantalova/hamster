@@ -2,10 +2,9 @@ import json
 import pytest
 import time
 import re
-import tempfile
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
 #Store test results globally
@@ -18,16 +17,14 @@ start_time = None # session start time
 
 @pytest.fixture()
 def browser():
-    temp_profile = tempfile.mkdtemp()
     chrome_options = Options()
-    chrome_options.add_argument(f"--user-data-dir={temp_profile}")
     chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-gpu") # for CI/CD
-    chrome_options.add_argument("--no sandbox") # for CI/CD
-    chrome_options.add_argument("disable-dev-shm-usage")
-    #chrome_options.binary_location = "/opt/google/chrome/"
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    #chrome_options.add_argument("--disable-gpu") # for CI/CD
+    #chrome_options.add_argument("--no sandbox") # for CI/CD
+    #chrome_options.add_argument("disable-dev-shm-usage") # for CI/CD
+    #chrome_options.binary_location = "/usr/bin/chromium-browser"
+    service = Service(ChromeDriverManager.install())
+    driver = webdriver.Chrome(service=service,options=chrome_options)
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
