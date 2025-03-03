@@ -10,7 +10,7 @@ pytest src/tests/ --xray-keys="KEY-1","KEY-2"
 ------------------------------------------------------------------------
 
 
-### To upload the results to xray run upload_to_xray.py
+### To upload the results to xray run xray_upload.py
 
 #### Prerequisites:
 1. XRAY API Keys are stored in cloud_auth.json.
