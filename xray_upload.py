@@ -85,7 +85,7 @@ def upload_results():
     response = requests.post(XRAY_IMPORT_URL, headers=headers, data=payload)
     print(payload)
     if response.status_code in [200, 201]:
-        print("Test execution results uploaded successfully to Test Execution {}".format(test_exectution_key))
+        print("Test execution results uploaded successfully to Test Execution {}".format(test_execution_key))
     else: 
         print("Failed to upload test results:", response.text)
 
