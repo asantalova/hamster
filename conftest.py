@@ -2,6 +2,7 @@ import json
 import pytest
 import time
 import re
+import tempfile
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -17,8 +18,10 @@ start_time = None # session start time
 
 @pytest.fixture()
 def browser():
+    temp_profile = tempfile.mkdtemp()
     chrome_options = Options()
-    #chrome_options.add_argument("--headless")
+    chrome_options.add_argument(f"--user-data-dir={temp_profile}")
+    chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-gpu") # for CI/CD
     chrome_options.add_argument("--no sandbox") # for CI/CD
     chrome_options.add_argument("disable-dev-shm-usage")
