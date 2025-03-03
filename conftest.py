@@ -19,9 +19,9 @@ def browser():
     chrome_options = Options()
     chrome_options.binary_location = "/usr/bin/chromium-browser"
     chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-gpu") # for CI/CD
-    chrome_options.add_argument("--no sandbox") # for CI/CD
-    chrome_options.add_argument("disable-dev-shm-usage") # for CI/CD
+    #chrome_options.add_argument("--disable-gpu") # for CI/CD
+    #chrome_options.add_argument("--no sandbox") # for CI/CD
+    #chrome_options.add_argument("disable-dev-shm-usage") # for CI/CD
     service = Service("/usr/bin/chromedriver")
     driver = webdriver.Chrome(service=service,options=chrome_options)
     driver.implicitly_wait(10)
