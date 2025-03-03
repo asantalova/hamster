@@ -4,4 +4,4 @@ __pycache__/
 /*.json
 /chrome-win64
 /venv
-/Pipfile
+/src/tests/robot_tests*

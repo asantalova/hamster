@@ -1,5 +1,10 @@
+import os
 import requests
 import json
+
+test_execution_key = os.environ.get("TEST_EXECUTION_KEY", "Not found") # export from Harness
+#test_keys = os.environ.get("TEST_KEYS", "Not found") 
+
 
 #XRAY Cloud API Endpoints
 XRAY_AUTH_URL = "https://xray.cloud.getxray.app/api/v2/authenticate"
@@ -36,16 +41,15 @@ def load_test_results():
             print("Test results loaded: ")
             executionResults=[]
             for test in test_data.get("tests", []):
-                test_key = "SCRUM-3"
+                test_key = test.get("test","")
                 status = map_status(test.get("outcome", "TO DO")) 
 
                 executionResults.append({
                     "testKey": test_key,
-                    "status": status,
-                    "comment": "Test executed in seconds"
+                    "status": status
                 })
 
-                return executionResults
+            return executionResults
     except (FileNotFoundError, json.JSONDecodeError):
             print("Error: Couldn't read or parse 'test_results.json'.")
             exit(1)
@@ -62,17 +66,11 @@ def map_status(pytest_status):
 #Format execution data
 def format_execution_data(executionResults):
     return json.dumps({
-        "testExecutionKey": "SCRUM-4", #Jira test execution issue
-        "info": {
-             "summary": "Automated Test Execution",
-             "description": "Results from automated tests",
-             "project": "Hamster" #project name
-         },
+        "testExecutionKey": test_execution_key, #Jira test execution issue
         "tests": executionResults
     }, indent = 4)
 
 #Upload Test Execution Results to Xray
-
 def upload_results():
     client_id, client_secret = load_xray_credentials()
     token = get_xray_token(client_id, client_secret)
@@ -87,7 +85,7 @@ def upload_results():
     response = requests.post(XRAY_IMPORT_URL, headers=headers, data=payload)
 
     if response.status_code in [200, 201]:
-        print("Test execution results uploaded successfully to SCRUM-4")
+        print("Test execution results uploaded successfully to Test Execution {}".format(test_execution_key))
     else: 
         print("Failed to upload test results:", response.text)
 
