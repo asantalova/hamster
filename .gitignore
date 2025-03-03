@@ -4,10 +4,4 @@ __pycache__/
 /*.json
 /chrome-win64
 /venv
-/Pipfile
-robot_overview.md
-/*.html
-/*.pdf
-/*.xml
-/*.PNG
-/tests/robot_tests
+/src/tests/robot_tests*

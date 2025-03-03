@@ -2,9 +2,9 @@ import os
 import requests
 import json
 
-test_execution_key = os.environ.get("TEST_EXECUTION_KEY", "Not found")
-test_keys = os.environ.get("TEST_KEYS", "Not found") 
-print(test_execution_key)
+test_execution_key = os.environ.get("TEST_EXECUTION_KEY", "Not found") # export from Harness
+#test_keys = os.environ.get("TEST_KEYS", "Not found") 
+
 
 #XRAY Cloud API Endpoints
 XRAY_AUTH_URL = "https://xray.cloud.getxray.app/api/v2/authenticate"
@@ -13,7 +13,7 @@ XRAY_IMPORT_URL = "https://xray.cloud.getxray.app/api/v2/import/execution"
 #Load credentials from cloud_auth.json
 def load_xray_credentials():
     try:
-        with open("cloud_auth_ops.json", "r") as file:
+        with open("cloud_auth.json", "r") as file:
             credentials = json.load(file)
             return credentials["client_id"], credentials["client_secret"]
     except (FileNotFoundError, KeyError, json.JSONDecodeError):
@@ -83,7 +83,7 @@ def upload_results():
 
     payload = format_execution_data(executionResults)
     response = requests.post(XRAY_IMPORT_URL, headers=headers, data=payload)
-    print(payload)
+
     if response.status_code in [200, 201]:
         print("Test execution results uploaded successfully to Test Execution {}".format(test_execution_key))
     else: 

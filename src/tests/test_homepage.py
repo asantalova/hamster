@@ -1,6 +1,6 @@
 import pytest
-from pages.home_page import ExploraHomePage
-from pytest_cases import case
+from src.pages.home_page import ExploraHomePage
+
 
 def launch(browser):
     homepage = ExploraHomePage(browser)
@@ -8,13 +8,13 @@ def launch(browser):
     return homepage
 
 @pytest.mark.SANITY
-@pytest.mark.xray(test_key="OPS-11")
+@pytest.mark.xray(test_key="TPT-70")
 def test_page_title(browser):
     homepage = launch(browser)
     assert(homepage.title()) == 'Luxury Cruises | Explora Journey'
 
 @pytest.mark.NRT
-@pytest.mark.xray(test_key="OPS-12")
+@pytest.mark.xray(test_key="TPT-71")
 def test_destination_list(browser):
     homepage = launch(browser)
     homepage.click_on_destination_field()

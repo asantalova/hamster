@@ -2,7 +2,7 @@
 
 ### Custom command to select tests for execution by xray marks. 
 ```sh
-pytest tests/ --xray-keys="KEY-1","KEY-2"  
+pytest src/tests/ --xray-keys="KEY-1","KEY-2"  
 ```
 #### *If no keys are provided, all tests with xray marks will be selected for execution.
 
@@ -14,8 +14,8 @@ pytest tests/ --xray-keys="KEY-1","KEY-2"
 
 #### Prerequisites:
 1. XRAY API Keys are stored in cloud_auth.json.
-2. Test execution key and all assosiated test keys are exported.
+2. Test execution key is exported from Jira payload.
 
 ```sh
-python xray_upload.py  
+python src/utils/xray_upload.py  
 ```

@@ -4,8 +4,6 @@ import time
 import re
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
 
 #Store test results globally
 test_results = []
@@ -23,8 +21,7 @@ def browser():
     #chrome_options.add_argument("--no sandbox") # for CI/CD
     #chrome_options.add_argument("disable-dev-shm-usage") # for CI/CD
     #chrome_options.binary_location = "/usr/bin/chromium-browser"
-    service = ChromeService(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service,options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
