@@ -4,7 +4,8 @@ import time
 import re
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 
 #Store test results globally
 test_results = []
@@ -17,12 +18,12 @@ start_time = None # session start time
 @pytest.fixture()
 def browser():
     chrome_options = Options()
-    chrome_options.binary_location = "/usr/bin/chromium-browser"
+    chrome_options.binary_location = "/usr/bin/google-chrome"
     chrome_options.add_argument("--headless")
     #chrome_options.add_argument("--disable-gpu") # for CI/CD
     #chrome_options.add_argument("--no sandbox") # for CI/CD
     #chrome_options.add_argument("disable-dev-shm-usage") # for CI/CD
-    service = Service("/usr/bin/chromedriver")
+    service=ChromeService(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service,options=chrome_options)
     driver.implicitly_wait(10)
     yield driver
