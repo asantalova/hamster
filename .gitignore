@@ -5,3 +5,5 @@ __pycache__/
 /chrome-win64
 /venv
 /src/tests/robot_tests*
+/allure-results
+/assets

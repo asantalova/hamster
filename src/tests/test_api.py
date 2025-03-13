@@ -3,7 +3,7 @@ import pytest
 
 BASE_URL = 'https://reqres.in/api'
 
-@pytest.mark.xray(test_key="TPT-73")
+@pytest.mark.xray(test_key="TPT-74")
 def test_create_user():
     payload = {
         "name": "Happy Hamster",
